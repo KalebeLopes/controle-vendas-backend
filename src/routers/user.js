@@ -5,6 +5,8 @@ const UserModel = require('../models/user')
 
 const userController = new UserController(UserModel)
 
+// rotas sempre no singular
+
 router.get('/', (req, res) => {
   userController.get(req, res)
 })
