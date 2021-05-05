@@ -5,8 +5,8 @@ class VendaController {
 
   async get(req, res) {
     try {
-      const users = await this.User.find({});
-      res.send(users);
+      const vendas = await this.Venda.find({});
+      res.send(vendas);
     } catch (err) {
       res.status(400).send(err.message);
     }
