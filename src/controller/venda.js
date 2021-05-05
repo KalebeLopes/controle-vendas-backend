@@ -1,6 +1,6 @@
 class VendaController {
-  constructor(User) {
-    this.User = User
+  constructor(Venda) {
+    this.Venda = Venda
   }
 
   async get(req, res) {
@@ -17,7 +17,7 @@ class VendaController {
     // console.log(req.body.email)
     try {
       await newVenda.save();
-      return res.status(201).send(newUser);
+      return res.status(201).send(newVenda);
     } catch (err) {
       return res.status(422).send(err.message);
     }

@@ -1,8 +1,13 @@
 const mongoose = require('mongoose')
 
-const schema = new mongoose.Schema({
+let Item = {
   item: String, 
+  quatidade: Number,
   valor: String,
+} 
+
+const schema = new mongoose.Schema({
+  vendas: Item = [],
   data: String
 })
 
