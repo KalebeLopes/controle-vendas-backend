@@ -9,7 +9,6 @@ const configureExpress = () => {
   app.use(bodyParser.json())
   app.use(cors())
   app.use(express.json())
-  app.use('/', express.static('./src/public'))
   app.use('/', routes)
   app.database = database
 
