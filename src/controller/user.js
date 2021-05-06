@@ -1,6 +1,7 @@
 class UserController {
-  constructor(User) {
+  constructor(User, AuthenticateService) {
     this.User = User
+    this.AuthenticateService = AuthenticateService
   }
 
   async get(req, res) {
@@ -30,17 +31,21 @@ class UserController {
   }
 
   async logar(req, res) {
+    const authenticateService = new this.AuthenticateService(this.User)
     try {
-      const user = await this.User.findOne({email: req.body.email})
-      if (user == null)
-        throw new Error('email invalido') 
-      if (user.email === req.body.email && user.senha === req.body.senha) {
-        console.log('autenticado')
-        res.status(201).send(user); //retornar o token
-      } else {
-        throw new Error('Dados inválidos')
-      }
-        
+      const user = await authenticateService.authenticate(req.body)
+      if(!user)
+        throw new Error('Dados incorretos')
+    
+      const token = this.AuthenticateService.generateToken({
+        nome: user.nome,
+        email: user.email,
+        senha: user.senha,
+        role: user.role
+      })
+
+      return res.send({token})
+
     } catch (err) {
       res.status(400).send(err.message);
     }
