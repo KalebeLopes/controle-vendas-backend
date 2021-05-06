@@ -11,6 +11,6 @@ const schema = new mongoose.Schema({
   data: String
 })
 
-const Venda = mongoose.model('Venda', schema)
+const Sale = mongoose.model('Sale', schema)
 
-module.exports = Venda
+module.exports = Sale
