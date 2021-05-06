@@ -2,8 +2,9 @@ const express = require('express')
 const router = express.Router()
 const UserController = require('../controller/user')
 const UserModel = require('../models/user')
+const AuthenticateService = require('../service/authenticate')
 
-const userController = new UserController(UserModel)
+const userController = new UserController(UserModel, AuthenticateService)
 
 // rotas sempre no singular
 
