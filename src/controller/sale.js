@@ -3,10 +3,19 @@ class SaleController {
     this.Sale = Sale
   }
 
-  async get(req, res) {
+  async getAll(req, res) {
     try {
       const sales = await this.Sale.find({});
       res.send(sales);
+    } catch (err) {
+      res.status(400).send(err.message);
+    }
+  }
+
+  async getOne(req, res) {
+    try {
+      const sale = await this.Sale.findOne({_id: req.params.id});
+      res.json(sale);
     } catch (err) {
       res.status(400).send(err.message);
     }

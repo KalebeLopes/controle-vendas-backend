@@ -9,7 +9,11 @@ const saleController = new SaleController(SaleModel)
 // rotas sempre no singular
 
 router.get('/', authMiddleware, (req, res) => {
-  saleController.get(req, res)
+  saleController.getAll(req, res)
+})
+
+router.get('/:id', authMiddleware, (req, res) => {
+  saleController.getOne(req, res)
 })
 
 router.get('/date_range', authMiddleware, (req, res) => {
