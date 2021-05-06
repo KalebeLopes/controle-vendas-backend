@@ -16,6 +16,10 @@ router.post('/', (req, res) => {
   userController.cadastrar(req, res)
 })
 
+router.delete('/', (req, res) => {
+  userController.deleteAll(req, res)
+})
+
 router.post('/login', (req, res) => {
   userController.logar(req, res)
 })

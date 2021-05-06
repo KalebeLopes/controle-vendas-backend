@@ -26,7 +26,7 @@ class AuthService {
 
   static generateToken(payload) {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: '1h'
+      expiresIn: process.env.EXPIRES_IN
     })
     return token
   }

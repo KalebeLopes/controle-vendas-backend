@@ -30,6 +30,15 @@ class UserController {
     }
   }
 
+  async deleteAll(req, res) {    
+    try {
+      await this.User.deleteMany()
+      res.send('usuarios deletados')
+    } catch (error) {
+      res.send(error)
+    }
+  }
+
   async logar(req, res) {
     const authenticateService = new this.AuthenticateService(this.User)
     try {
@@ -44,7 +53,10 @@ class UserController {
         role: user.role
       })
 
-      return res.send({token})
+      return res.status(200).json({
+        idToken: token,
+        expiresIn: process.env.EXPIRES_IN
+      })
 
     } catch (err) {
       res.status(400).send(err.message);
