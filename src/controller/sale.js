@@ -13,17 +13,21 @@ class SaleController {
   }
 
   async getByDate(req, res) {
-    const {startDate, endDate} = req.query
-    // console.log(new Date(startDate).toDateString(), ' ', new Date(endDate).toDateString())
+    let {startDate, endDate} = req.query
+
     try {
+      if (!startDate)
+        throw new Error('Data inicial invalida')
+      if (!endDate)
+        endDate = startDate
+
       const sales = await this.Sale.find({
         "data": {
-          $eq: new Date(startDate).toDateString()
-          // $gte: new Date(startDate).toDateString(),
-          // $lte: new Date(endDate).toDateString()
+          $gte: new Date(startDate),
+          $lte: new Date(endDate)
         }
-      })
-      console.log(sales)
+      }).sort({data: 'asc'})
+
       res.send(sales)
     } catch (err) {
       res.status(404).send(err.message);
