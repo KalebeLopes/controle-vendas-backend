@@ -5,6 +5,7 @@ class UserController {
   }
 
   async get(req, res) {
+    console.log(req.decoded)
     try {
       const users = await this.User.find({});
       res.send(users);
@@ -54,7 +55,7 @@ class UserController {
       })
 
       return res.status(200).json({
-        idToken: token,
+        token: token,
         expiresIn: process.env.EXPIRES_IN
       })
 
