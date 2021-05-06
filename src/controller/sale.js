@@ -32,7 +32,9 @@ class SaleController {
 
   async cadastrar(req, res) {
     const sales = req.body.vendas
-    let data = new Date(req.body.data).toDateString()
+    let data = req.body.data 
+    
+    data !== '' ? new Date(req.body.data) : null
 
     const newSale = new this.Sale(
       {

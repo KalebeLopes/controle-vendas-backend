@@ -7,8 +7,14 @@ let Item = {
 } 
 
 const schema = new mongoose.Schema({
-  vendas: Item = [],
-  data: String
+  vendas: {
+    type: Item = [],
+    required: true
+  },
+  data: {
+    type: String,
+    required: true
+  }
 })
 
 const Sale = mongoose.model('Sale', schema)
