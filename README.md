@@ -1,7 +1,7 @@
 # Back-End - SalesControl
 
 ### Como rodar o servidor: 
- * npm run start
+`npm run start`
 
 ### Frameworks e ferramentas utilizadas:
   * express;
