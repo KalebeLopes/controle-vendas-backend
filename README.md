@@ -10,3 +10,6 @@
   * mongoose;
   * bcrypt;
   * jest;
+
+### Front-End:
+https://github.com/KalebeLopes/controle-vendas-frontend
