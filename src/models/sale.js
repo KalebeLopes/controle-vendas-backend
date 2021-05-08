@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 let Item = {
-  item: String, 
+  nome: String, 
   quatidade: Number,
   valor: String,
 } 
@@ -14,6 +14,14 @@ const schema = new mongoose.Schema({
   data: {
     type: Date,
     required: true
+  },
+  tipoPagamento: {
+    type: String,
+    required: true
+  }, 
+  qtdParcelas: {
+    type: Number,
+    default: 1
   }
 })
 
