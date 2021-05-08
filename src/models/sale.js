@@ -7,6 +7,10 @@ let Item = {
 } 
 
 const schema = new mongoose.Schema({
+  idUser: {
+    type: String,
+    required: true
+  },
   vendas: {
     type: Item = [],
     required: true
