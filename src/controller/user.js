@@ -46,12 +46,13 @@ class UserController {
       const user = await authenticateService.authenticate(req.body)
       if(!user)
         throw new Error('Dados incorretos')
-    
+      
       const token = this.AuthenticateService.generateToken({
+        _id: user._id,
         nome: user.nome,
         email: user.email,
         senha: user.senha,
-        role: user.role
+        role: user.role,
       })
 
       return res.status(200).json({
