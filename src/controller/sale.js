@@ -6,7 +6,7 @@ class SaleController {
   async getAll(req, res) {
     const idUser = req.decoded._id
     try {
-      const sales = await this.Sale.find({idUser: idUser});
+      const sales = await this.Sale.find({idUser: idUser}).sort({data: 'desc'})
       console.log(sales)
       const salesSerialized = sales.map((res) => {
         return {
