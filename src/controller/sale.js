@@ -6,7 +6,18 @@ class SaleController {
   async getAll(req, res) {
     try {
       const sales = await this.Sale.find({});
-      res.send(sales);
+      console.log(sales)
+      const salesSerialized = sales.map((res) => {
+        return {
+          vendas: res.vendas,
+          qtdParcelas: res.qtdParcelas,
+          _id: res._id,
+          data: res.data.toDateString(),
+          __v: res.__v 
+        }
+      })
+
+      res.send(salesSerialized);
     } catch (err) {
       res.status(400).send(err.message);
     }
@@ -44,15 +55,18 @@ class SaleController {
   }
 
   async cadastrar(req, res) {
-    const sales = req.body.vendas
+    // console.log(req.decoded)
+    const {vendas, tipoPagamento, qtdParcelas} = req.body
     let data = req.body.data 
-    
+
     data !== '' ? new Date(req.body.data) : null
 
     const newSale = new this.Sale(
       {
-        vendas: sales,
-        data: data 
+        vendas: vendas,
+        data: data,
+        tipoPagamento: tipoPagamento,
+        qtdParcelas: qtdParcelas
       }
     )
     // console.log(req.body.email)
