@@ -5,12 +5,16 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 router.use((req, res, next) => {
-  const {token} = req.headers
-  if(!token) 
-    res.sendStatus(401)
+  console.log(req.headers)
+  const {authorization} = req.headers
+  const token = authorization.split(' ')[1]
 
+  console.log(token)
+  if(!token) 
+    return res.sendStatus(401)
+  console.log(token)
   jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
-    // console.log(decoded)
+    console.log('valido')
     req.decoded = decoded
     next(error)
   })
