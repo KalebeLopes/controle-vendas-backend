@@ -12,7 +12,7 @@ router.get('/', authMiddleware, (req, res) => {
   saleController.getAll(req, res)
 })
 
-router.get('/:id', authMiddleware, (req, res) => {
+router.get('/detail/:id', authMiddleware, (req, res) => {
   saleController.getOne(req, res)
 })
 
